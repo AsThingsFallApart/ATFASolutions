@@ -71,12 +71,29 @@ int main() {
 
 
 
-  cout << "day\tcupsSoldPerDay\trollingMinimumLemons\trollingMinimumsSugar\n";
+  cout << "day\tcupsSoldPerDay\n";
 
   for(i = 0; i < daysSpentSellingLemonade; i++) {
-    cout << i << "\t" << cupsSoldPerDay[i];
+    cout << i << "\t" << cupsSoldPerDay[i] << "\n";
+  }
 
+  cout << "\nLEMONS:\n";
 
+  for(i = 0; i < rollingMinimumsLemonEpochStart.size(); i++) {
+    if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() == 1) {
+      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+    }
+    else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.back()) {
+      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+    }
+    else {
+      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (rollingMinimumsLemonEpochStart.at(i + 1) - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+    }
+
+    epochCounter++;
   }
 
 
