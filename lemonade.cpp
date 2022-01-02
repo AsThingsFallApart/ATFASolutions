@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 using namespace std;
 
 /* implementation notes: */
@@ -24,52 +25,60 @@ using namespace std;
 int main() {
   int daysSpentSellingLemonade = 0, lemonsConsumedPerCup = 0, sugarConsumedPerCup = 0;
   int i = 0;
+  int epochCounter = 0;
   int cupsSoldInDay = 0, priceOfSingleLemon = 0, priceOfEightyOuncesOfSugar = 0;
   int sugarInStorage = 0;
   int totalCost = 0;
-  int lemonsNeededToday = 0;
-  int priceOfLemonsNeededToday = 0;
-  int sugarNeededToday = 0;
-  int priceOfSugarNeededToday = 0;
-  double fivePoundBagsSugarNeeded = 0.0;
-  int sugarBoughtInOunces = 0;
+  int rollingMinimumLemon = 51;
+  vector<int> rollingMinimumsLemon;
+  vector<int> rollingMinimumsLemonEpochStart;
+  int rollingMinimumSugar = 501;
+  vector<int> rollingMinimumsSugar;
+  vector<int> rollingMinimumsSugarEpochStart;
+  int cupsSoldPerDay[daysSpentSellingLemonade];
 
   cin >> daysSpentSellingLemonade >> lemonsConsumedPerCup >> sugarConsumedPerCup;
 
+  // if we have:
+  //  1. rolling minimums and time periods for lemons
+  //  2. rolling minimums and time periods for sugar
+  //  3. cups sold for each day
+  // the total minimum cost can be calculated.
   for(i = 0; i < daysSpentSellingLemonade; i++) {
     cin >> cupsSoldInDay >> priceOfSingleLemon >> priceOfEightyOuncesOfSugar;
 
-    cout << "\nDay " << (i + 1) << ": \n";
+    // organize cups sold each day (3) into an array
+    cupsSoldPerDay[i] = cupsSoldInDay;
 
-    lemonsNeededToday = cupsSoldInDay * lemonsConsumedPerCup;
-    priceOfLemonsNeededToday = lemonsNeededToday * priceOfSingleLemon;
-
-    cout << "Money(cents) spent buying lemons: " << priceOfLemonsNeededToday << "\n";
-
-    sugarNeededToday = (cupsSoldInDay * sugarConsumedPerCup) - sugarInStorage;
-    fivePoundBagsSugarNeeded = sugarNeededToday / 80.0;
-
-    cout << "sugarInStorage: " << sugarInStorage << "\n";
-    cout << "sugarNeededToday: " << sugarNeededToday << "\n";
-    cout << "fivePoundBagsSugarNeeded: " << fivePoundBagsSugarNeeded << "\n";
-
-    if(ceil(fivePoundBagsSugarNeeded) > fivePoundBagsSugarNeeded) {
-      priceOfSugarNeededToday = ceil(fivePoundBagsSugarNeeded) * priceOfEightyOuncesOfSugar;
-      sugarBoughtInOunces = ceil(fivePoundBagsSugarNeeded) * 80;
-      sugarInStorage = sugarBoughtInOunces - sugarNeededToday;
-    }
-    else {
-      priceOfSugarNeededToday = fivePoundBagsSugarNeeded * priceOfEightyOuncesOfSugar;
-      sugarBoughtInOunces = fivePoundBagsSugarNeeded * 80;
-      sugarInStorage = sugarBoughtInOunces - sugarNeededToday;
+    // organize rolling minimums for lemons and their start days (1) into vectors
+    if(priceOfSingleLemon < rollingMinimumLemon) {
+      rollingMinimumLemon = priceOfSingleLemon;
+      rollingMinimumsLemon.push_back(rollingMinimumLemon);
+      rollingMinimumsLemonEpochStart.push_back(i);
     }
 
-    cout << "Money(cents) spent buying sugar: " << priceOfSugarNeededToday << "\n";
-
-    totalCost += priceOfLemonsNeededToday + priceOfSugarNeededToday;
-
-    cout << "totalCost: " << totalCost;
+    // organize rolling minimums for sugar and their start days (2) into vectors
+    if(priceOfEightyOuncesOfSugar < rollingMinimumSugar) {
+      rollingMinimumSugar = priceOfEightyOuncesOfSugar;
+      rollingMinimumsSugar.push_back(rollingMinimumSugar);
+      rollingMinimumsSugarEpochStart.push_back(i);
+    }
   }
+
+  // number of epochs = rollingMinimumLemonEpochStart.size();
+  // so we have total number of epochs and when the epochs begin
+  // I need to initialize epochCounter before printing rollingMinimums
+
+
+
+  cout << "day\tcupsSoldPerDay\trollingMinimumLemons\trollingMinimumsSugar\n";
+
+  for(i = 0; i < daysSpentSellingLemonade; i++) {
+    cout << i << "\t" << cupsSoldPerDay[i];
+
+
+  }
+
 
   return 0;
 }
