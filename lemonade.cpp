@@ -24,20 +24,20 @@ using namespace std;
 
 int main() {
   int daysSpentSellingLemonade = 0, lemonsConsumedPerCup = 0, sugarConsumedPerCup = 0;
-  int i = 0;
-  int epochCounter = 0;
+  int i = 0, j = 0;
   int cupsSoldInDay = 0, priceOfSingleLemon = 0, priceOfEightyOuncesOfSugar = 0;
   int sugarInStorage = 0;
-  int totalCost = 0;
+  int totalMinimumCost = 0, minimumCostThisEpoch = 0, minimumCostLemons = 0, minimumCostSugar = 0;
+  int costPerDay = 0;
   int rollingMinimumLemon = 51;
   vector<int> rollingMinimumsLemon;
   vector<int> rollingMinimumsLemonEpochStart;
   int rollingMinimumSugar = 501;
   vector<int> rollingMinimumsSugar;
   vector<int> rollingMinimumsSugarEpochStart;
-  int cupsSoldPerDay[daysSpentSellingLemonade];
 
   cin >> daysSpentSellingLemonade >> lemonsConsumedPerCup >> sugarConsumedPerCup;
+  int cupsSoldPerDay[daysSpentSellingLemonade];
 
   // if we have:
   //  1. rolling minimums and time periods for lemons
@@ -79,6 +79,7 @@ int main() {
 
   cout << "\nLEMONS:\n";
 
+  // loop through lemon epochs
   for(i = 0; i < rollingMinimumsLemonEpochStart.size(); i++) {
     if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() == 1) {
       cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
@@ -93,9 +94,48 @@ int main() {
       cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
     }
 
-    epochCounter++;
+    // in an epoch, there are one or more days: loop through days in an epoch
+    // case: only one epoch
+    if(rollingMinimumsLemonEpochStart.size() == 1) {
+        for(j = rollingMinimumsLemonEpochStart.at(i); j < daysSpentSellingLemonade; j++) {
+          costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
+          cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+          minimumCostThisEpoch += costPerDay;
+        }
+    }
+    // case: first epoch of several
+    else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() > 1) {
+        for(j = rollingMinimumsLemonEpochStart.at(i); j < rollingMinimumsLemonEpochStart.at(i + 1); j++) {
+          costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
+          cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+          minimumCostThisEpoch += costPerDay;
+        }
+    }
+    // case: last epoch of several
+    else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.back()) {
+        for(j = rollingMinimumsLemonEpochStart.at(i); j < daysSpentSellingLemonade; j++) {
+          costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
+          cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+          minimumCostThisEpoch += costPerDay;
+        }
+    }
+    // case: middle epoch
+    else {
+        for(j = rollingMinimumsLemonEpochStart.at(i); j < rollingMinimumsLemonEpochStart.at(i + 1); j++) {
+          costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
+          cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+          minimumCostThisEpoch += costPerDay;
+        }
+    }
+
+    cout << "minimumCostThisEpoch: " << minimumCostThisEpoch << "\n\n";
+
+    minimumCostLemons += minimumCostThisEpoch;
+    minimumCostThisEpoch = 0;
   }
 
+
+  cout << "\nminimumCostLemons: " << minimumCostLemons << "\n";
 
   return 0;
 }
