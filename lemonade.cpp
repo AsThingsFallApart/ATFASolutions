@@ -137,5 +137,23 @@ int main() {
 
   cout << "\nminimumCostLemons: " << minimumCostLemons << "\n";
 
+  // plan: do the same thing for sugar that was done for lemons
+  // with special consideration for units and overflow
+  cout << "\nSUGAR:" << "\n";
+  for(i = 0; i < rollingMinimumsSugarEpochStart.size(); i++) {
+    if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.front() && rollingMinimumsSugarEpochStart.size() == 1) {
+      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+    }
+    else if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.back()) {
+      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+    }
+    else {
+      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (rollingMinimumsSugarEpochStart.at(i + 1) - 1) << "\n";
+      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+    }
+  }
+
   return 0;
 }
