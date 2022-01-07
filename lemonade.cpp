@@ -66,35 +66,35 @@ int main() {
     }
   }
 
-  cout << "day\tcupsSoldPerDay\n";
+//  cout << "day\tcupsSoldPerDay\n";
 
-  for(i = 0; i < daysSpentSellingLemonade; i++) {
-    cout << i << "\t" << cupsSoldPerDay[i] << "\n";
-  }
+//  for(i = 0; i < daysSpentSellingLemonade; i++) {
+//    cout << i << "\t" << cupsSoldPerDay[i] << "\n";
+//  }
 
-  cout << "\nLEMONS:\n";
+//  cout << "\nLEMONS:\n";
 
   // loop through lemon epochs
   for(i = 0; i < rollingMinimumsLemonEpochStart.size(); i++) {
-    if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() == 1) {
-      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
-    }
-    else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.back()) {
-      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
-    }
-    else {
-      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (rollingMinimumsLemonEpochStart.at(i + 1) - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
-    }
+//    if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() == 1) {
+//      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+//    }
+//    else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.back()) {
+//      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+//    }
+//    else {
+//      cout << "Epoch " << i << ": Days " << rollingMinimumsLemonEpochStart.at(i) << " - " << (rollingMinimumsLemonEpochStart.at(i + 1) - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsLemon.at(i) << " cents\n";
+//    }
 
     // in an epoch, there are one or more days: loop through days in an epoch
     // case: only one epoch
     if(rollingMinimumsLemonEpochStart.size() == 1) {
       for(j = rollingMinimumsLemonEpochStart.at(i); j < daysSpentSellingLemonade; j++) {
         costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
-        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+//        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
         minimumCostThisEpoch += costPerDay;
       }
     }
@@ -102,7 +102,7 @@ int main() {
     else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.front() && rollingMinimumsLemonEpochStart.size() > 1) {
       for(j = rollingMinimumsLemonEpochStart.at(i); j < rollingMinimumsLemonEpochStart.at(i + 1); j++) {
         costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
-        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+//        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
         minimumCostThisEpoch += costPerDay;
       }
     }
@@ -110,7 +110,7 @@ int main() {
     else if(rollingMinimumsLemonEpochStart.at(i) == rollingMinimumsLemonEpochStart.back()) {
       for(j = rollingMinimumsLemonEpochStart.at(i); j < daysSpentSellingLemonade; j++) {
         costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
-        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+//        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
         minimumCostThisEpoch += costPerDay;
       }
     }
@@ -118,36 +118,36 @@ int main() {
     else {
       for(j = rollingMinimumsLemonEpochStart.at(i); j < rollingMinimumsLemonEpochStart.at(i + 1); j++) {
         costPerDay = (cupsSoldPerDay[j] * lemonsConsumedPerCup) * rollingMinimumsLemon.at(i);
-        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
+//        cout << "Day " << j << ": (" << cupsSoldPerDay[j] << " * " << lemonsConsumedPerCup << ") * " << rollingMinimumsLemon.at(i) << "\n";
         minimumCostThisEpoch += costPerDay;
       }
     }
 
-    cout << "minimumCostThisEpoch: " << minimumCostThisEpoch << "\n\n";
+//    cout << "minimumCostThisEpoch: " << minimumCostThisEpoch << "\n\n";
 
     minimumCostLemons += minimumCostThisEpoch;
     minimumCostThisEpoch = 0;
   }
 
 
-  cout << "\nminimumCostLemons: " << minimumCostLemons << "\n";
+//  cout << "\nminimumCostLemons: " << minimumCostLemons << "\n";
 
   // plan: do the same thing for sugar that was done for lemons
   // with special consideration for units and overflow
-  cout << "\nSUGAR:" << "\n";
+//  cout << "\nSUGAR:" << "\n";
   for(i = 0; i < rollingMinimumsSugarEpochStart.size(); i++) {
-    if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.front() && rollingMinimumsSugarEpochStart.size() == 1) {
-      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
-    }
-    else if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.back()) {
-      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
-    }
-    else {
-      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (rollingMinimumsSugarEpochStart.at(i + 1) - 1) << "\n";
-      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
-    }
+//    if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.front() && rollingMinimumsSugarEpochStart.size() == 1) {
+//      cout << "Epoch 0: Days 0 - " << (daysSpentSellingLemonade - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+//    }
+//    else if(rollingMinimumsSugarEpochStart.at(i) == rollingMinimumsSugarEpochStart.back()) {
+//      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (daysSpentSellingLemonade - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+//    }
+//    else {
+//      cout << "Epoch " << i << ": Days " << rollingMinimumsSugarEpochStart.at(i) << " - " << (rollingMinimumsSugarEpochStart.at(i + 1) - 1) << "\n";
+//      cout << "Rolling minimum: " << rollingMinimumsSugar.at(i) << " cents\n";
+//    }
 
     // case: only one epoch
     if(rollingMinimumsSugarEpochStart.size() == 1) {
@@ -160,7 +160,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
         else {
@@ -168,7 +168,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
       }
@@ -184,7 +184,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
         else {
@@ -192,7 +192,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
       }
@@ -208,7 +208,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
         else {
@@ -216,7 +216,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
       }
@@ -232,7 +232,7 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
         else {
@@ -240,22 +240,23 @@ int main() {
           sugarInStorage = sugarPurchasedTodayInOunces - sugarNeededTodayInOunces;
 
           costPerDay = ceil(bagsOfSugarNeeded) * rollingMinimumsSugar.at(i);
-          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
+//          cout << "Day " << j << ": " << ceil(bagsOfSugarNeeded) << " * " << rollingMinimumsSugar.at(i) << "\n";
           minimumCostThisEpoch += costPerDay;
         }
       }
     }
 
-    cout << "minimumCostThisEpoch: " << minimumCostThisEpoch << "\n";
+//    cout << "minimumCostThisEpoch: " << minimumCostThisEpoch << "\n";
 
     minimumCostSugar += minimumCostThisEpoch;
     minimumCostThisEpoch = 0;
   }
 
-  cout << "\n\nminimumCostSugar: " << minimumCostSugar;
+  //cout << "\n\nminimumCostSugar: " << minimumCostSugar;
 
   minimumCostTotal = minimumCostLemons + minimumCostSugar;
-  cout << "\n\nminimumCostTotal: " << minimumCostTotal;
+  //cout << "\n\nminimumCostTotal: " << minimumCostTotal;
+  cout << minimumCostTotal;
 
   return 0;
 }
