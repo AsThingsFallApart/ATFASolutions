@@ -42,9 +42,12 @@ int main() {
   if(squareLength / 2.0 >= circleRadius) {
     skylightRainArea = areaCircle;
   }
+  else if(squareLength / 2.0 < circleRadius) {
+    skylightRainArea = areaSquare;
+  }
 
   // round to two (100 represents the hundredth place, 1000 for three decimal places, etc) decimal places
-  skylightRainArea = ceil(skylightRainArea * 100) / 100;
+  skylightRainArea = round(skylightRainArea * 100) / 100;
 
   cout << "\nskylightRainArea: " << skylightRainArea;
 
