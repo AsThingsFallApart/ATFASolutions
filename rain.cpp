@@ -12,6 +12,15 @@ using namespace std;
 // is this not just
 // skylightRainArea = (squareLength * squareLength) - (M_PI * (circleRadius * circleRadius));
 // ...?
+// 1/11/22 edit:
+// water falls in each unit squared of the square
+// skylightRainArea is how much of the square is also the circle
+// therefore, skylightRainArea is always a number from
+//  0 (the circle is nonexistent) to
+//  squareLength * squareLength (the circle covers all the square area)
+// I feel like I understand the context better
+// Does the algorithm require calculus...?
+//  Probably not since these questions are designed to be solved by high schoolers
 
 int main() {
   int squareLength = 0, circleRadius = 0;
@@ -20,10 +29,19 @@ int main() {
 
   cin >> squareLength >> circleRadius;
 
-  cout << "areaSquare: " << squareLength * squareLength << "\n";
-  cout << "areaCircle: " << pi * (circleRadius * circleRadius) << "\n";
+  int areaSquare = squareLength * squareLength;
+  double areaCircle = pi * (circleRadius * circleRadius);
 
-  skylightRainArea = (squareLength * squareLength) - (pi * (circleRadius * circleRadius));
+  cout << "areaSquare: " << areaSquare << "\n";
+  cout << "areaCircle: " << areaCircle << "\n";
+  cout << "squareLengthHalved: " << squareLength / 2.0 << "\n";
+
+  // logic: if the circle is completely inside the square,
+  // the amount of area covered is all inside the square.
+  // No skylightRainArea needs to be pruned...
+  if(squareLength / 2.0 >= circleRadius) {
+    skylightRainArea = areaCircle;
+  }
 
   // round to two (100 represents the hundredth place, 1000 for three decimal places, etc) decimal places
   skylightRainArea = ceil(skylightRainArea * 100) / 100;
