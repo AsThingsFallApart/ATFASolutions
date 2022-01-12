@@ -36,13 +36,17 @@ int main() {
   cout << "areaCircle: " << areaCircle << "\n";
   cout << "squareLengthHalved: " << squareLength / 2.0 << "\n";
 
+  // case: circle completely enclosed by square
   // logic: if the circle is completely inside the square,
   // the amount of area covered is all inside the square.
   // No skylightRainArea needs to be pruned...
   if(squareLength / 2.0 >= circleRadius) {
     skylightRainArea = areaCircle;
   }
-  else if(squareLength / 2.0 < circleRadius) {
+  // case: square completely enclosed by circle
+  // breakpoint: when the radius is 4/3 times the length,
+  // the circle completely encloses the square
+  else if((circleRadius * 4) / 3 >= squareLength) {
     skylightRainArea = areaSquare;
   }
 
