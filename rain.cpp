@@ -49,6 +49,27 @@ int main() {
   else if((circleRadius * 4) / 3 >= squareLength) {
     skylightRainArea = areaSquare;
   }
+  // case: circle not completely in square; square not completely in circle
+  else() {
+    double areaTriangle = 0.0;
+    double areaSector = 0.0;
+    double areaQuadrant = 0.0;
+    double theta = 0.0;
+    int triangleBase = squareLength;
+    int triangleHypo = circleRadius;
+
+    double triangleHeight = sqrt((triangleHypo * triangleHypo) - (triangleBase * triangleBase));
+
+    areaTriangle = 0.5 * (triangleBase * triangleHeight);
+
+    theta = atan2(triangleHeight, triangleBase);
+
+    areaSector = (theta / 2) * (circleRadius * 2)
+
+    areaQuadrant = areaTriangle * 2 + areaSector;
+
+    skylightRainArea = areaQuadrant * 4;
+  }
 
   // round to two (100 represents the hundredth place, 1000 for three decimal places, etc) decimal places
   skylightRainArea = round(skylightRainArea * 100) / 100;
