@@ -25,10 +25,19 @@ using namespace std;
 int main() {
   int squareLength = 0, circleRadius = 0;
   double pi = 3.14159265358979;
+  double ninetyDegreesRadian = 1.570796327;
   double skylightRainArea = 0.0;
+  double triangleHeight = 0.0;
+  double areaTriangle = 0.0;
+  double areaSector = 0.0;
+  double areaQuadrant = 0.0;
+  double theta = 0.0;
+  double thetaSector = 0.0;
 
   cin >> squareLength >> circleRadius;
 
+  int triangleBase = squareLength / 2.0;
+  int triangleHypo = circleRadius;
   int areaSquare = squareLength * squareLength;
   double areaCircle = pi * (circleRadius * circleRadius);
 
@@ -50,25 +59,29 @@ int main() {
     skylightRainArea = areaSquare;
   }
   // case: circle not completely in square; square not completely in circle
-  else() {
-    double areaTriangle = 0.0;
-    double areaSector = 0.0;
-    double areaQuadrant = 0.0;
-    double theta = 0.0;
-    int triangleBase = squareLength;
-    int triangleHypo = circleRadius;
-
-    double triangleHeight = sqrt((triangleHypo * triangleHypo) - (triangleBase * triangleBase));
+  else {
+    // pythagorean theorem to get triangleHeight (a.k.a. opposite leg)
+    // opposite triangle leg needed for triangleArea and theta
+    triangleHeight = sqrt((triangleHypo * triangleHypo) - (triangleBase * triangleBase));
+    cout << "triangleHeight: " << triangleHeight << "\n";
 
     areaTriangle = 0.5 * (triangleBase * triangleHeight);
+    cout << "areaTriangle: " << areaTriangle << "\n";
 
     theta = atan2(triangleHeight, triangleBase);
+    cout << "theta: " << theta << "\n";
 
-    areaSector = (theta / 2) * (circleRadius * 2)
+    thetaSector = ninetyDegreesRadian - (theta * 2);
+    cout << "thetaSector: " << thetaSector << "\n";
+
+    areaSector = (thetaSector / 2) * (circleRadius * circleRadius);
+    cout << "areaSector: " << areaSector << "\n";
 
     areaQuadrant = areaTriangle * 2 + areaSector;
+    cout << "areaQuadrant: " << areaQuadrant << "\n";
 
     skylightRainArea = areaQuadrant * 4;
+    cout << "skylightRainArea: " << skylightRainArea << "\n";
   }
 
   // round to two (100 represents the hundredth place, 1000 for three decimal places, etc) decimal places
