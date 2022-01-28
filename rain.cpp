@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>  // setprecision, fixed
 using namespace std;
 
 // notes:
@@ -41,9 +42,9 @@ int main() {
   int areaSquare = squareLength * squareLength;
   double areaCircle = pi * (circleRadius * circleRadius);
 
-  cout << "areaSquare: " << areaSquare << "\n";
-  cout << "areaCircle: " << areaCircle << "\n";
-  cout << "squareLengthHalved: " << squareLength / 2.0 << "\n";
+//  cout << "areaSquare: " << areaSquare << "\n";
+//  cout << "areaCircle: " << areaCircle << "\n";
+//  cout << "squareLengthHalved: " << squareLength / 2.0 << "\n";
 
   // case: circle completely enclosed by square
   // logic: if the circle is completely inside the square,
@@ -63,31 +64,31 @@ int main() {
     // pythagorean theorem to get triangleHeight (a.k.a. opposite leg)
     // opposite triangle leg needed for triangleArea and theta
     triangleHeight = sqrt((triangleHypo * triangleHypo) - (triangleBase * triangleBase));
-    cout << "triangleHeight: " << triangleHeight << "\n";
+//    cout << "triangleHeight: " << triangleHeight << "\n";
 
     areaTriangle = 0.5 * (triangleBase * triangleHeight);
-    cout << "areaTriangle: " << areaTriangle << "\n";
+//    cout << "areaTriangle: " << areaTriangle << "\n";
 
     theta = atan2(triangleHeight, triangleBase);
-    cout << "theta: " << theta << "\n";
+//    cout << "theta: " << theta << "\n";
 
     thetaSector = ninetyDegreesRadian - (theta * 2);
-    cout << "thetaSector: " << thetaSector << "\n";
+//    cout << "thetaSector: " << thetaSector << "\n";
 
     areaSector = (thetaSector / 2) * (circleRadius * circleRadius);
-    cout << "areaSector: " << areaSector << "\n";
+//    cout << "areaSector: " << areaSector << "\n";
 
     areaQuadrant = areaTriangle * 2 + areaSector;
-    cout << "areaQuadrant: " << areaQuadrant << "\n";
+//    cout << "areaQuadrant: " << areaQuadrant << "\n";
 
     skylightRainArea = areaQuadrant * 4;
-    cout << "skylightRainArea: " << skylightRainArea << "\n";
+//    cout << "skylightRainArea: " << skylightRainArea << "\n";
   }
 
   // round to two (100 represents the hundredth place, 1000 for three decimal places, etc) decimal places
   skylightRainArea = round(skylightRainArea * 100) / 100;
 
-  cout << "\nskylightRainArea: " << skylightRainArea;
+  cout << fixed << setprecision(2) << skylightRainArea;
 
   return 0;
 }
